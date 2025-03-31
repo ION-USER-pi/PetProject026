@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>petproject026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #ecf0f1;
+            --text-color: #34495e;
+            --code-bg: #f7f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        nav {
+            background-color: var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 0;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu li {
+            margin-left: 1.5rem;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 3rem 0;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        h3 {
+            color: var(--primary-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+
+        .example {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .interactive-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .tab-container {
+            margin-top: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            list-style: none;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 1rem 0;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .definition {
+            background-color: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .graph-visualization {
+            margin: 2rem 0;
+            height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .node {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+        }
+
+        .edge {
+            position: absolute;
+            height: 2px;
+            background-color: #95a5a6;
+            transform-origin: left center;
+            z-index: -1;
+        }
+
+        .edge-label {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .scrollToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 99;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                margin: 0.5rem 0;
+                margin-left: 0;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Light/Dark mode toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 1rem;
+        }
+
+        /* Dark mode */
+        body.dark-mode {
+            --primary-color: #1a1a2e;
+            --secondary-color: #4361ee;
+            --accent-color: #e94560;
+            --bg-color: #121212;
+            --text-color: #e6e6e6;
+            --code-bg: #1e1e1e;
+        }
+
+        body.dark-mode section,
+        body.dark-mode .interactive-container {
+            background-color: #1e1e1e;
+            color: var(--text-color);
+        }
+
+        body.dark-mode .example,
+        body.dark-mode .graph-visualization {
+            background-color: #252525;
+        }
+
+        body.dark-mode .definition {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="title">RDF Formal Semantics</h1>
+            <p class="subtitle">Exploring the mathematical foundations of the Resource Description Framework</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">RDF Semantics</a>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="menu">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#simple-semantics">Simple Semantics</a></li>
+                <li><a href="#rdf-interpretations">RDF Interpretations</a></li>
+                <li><a href="#entailment">Entailment</a></li>
+                <li><a href="#rdfs-semantics">RDFS Semantics</a></li>
+                <li><button class="theme-toggle" id="themeToggle">🌓</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="introduction">
+            <h2>Introduction to RDF Semantics</h2>
+            <p>The Resource Description Framework (RDF) is a framework for representing information on the Web. RDF's formal semantics provides a precise mathematical foundation that determines the meaning of RDF statements and enables logical inference.</p>
+            
+            <p>Unlike natural language, which can be ambiguous, formal semantics offers a precise, mathematical definition of meaning. This precision is crucial for:</p>
+            
+            <ul>
+                <li>Ensuring consistent interpretation across different systems</li>
+                <li>Enabling machine-driven inference and reasoning</li>
+                <li>Providing a foundation for the Semantic Web vision</li>
+            </ul>
+
+            <div class="interactive-container">
+                <h3>Key Components of RDF</h3>
+                <p>RDF is built around a simple data model consisting of:</p>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="triples">Triples</button>
+                        <button class="tab-btn" data-tab="resources">Resources</button>
+                        <button class="tab-btn" data-tab="properties">Properties</button>
+                        <button class="tab-btn" data-tab="literals">Literals</button>
+                    </div>
+                    
+                    <div id="triples" class="tab-content active">
+                        <p>The fundamental unit in RDF is the <strong>triple</strong>, consisting of a subject, predicate, and object.</p>
+                        <div class="code-block">
+                            &lt;subject&gt; &lt;predicate&gt; &lt;object&gt; .
+                        </div>
+                        <p>For example:</p>
+                        <div class="code-block">
+                            &lt;http://example.org/bob&gt; &lt;http://example.org/knows&gt; &lt;http://example.org/alice&gt; .
+                        </div>
+                    </div>
+                    
+                    <div id="resources" class="tab-content">
+                        <p><strong>Resources</strong> are things being described by RDF statements. Resources are identified by URIs (Uniform Resource Identifiers).</p>
+                        <p>In RDF semantics, resources correspond to entities in the domain of discourse.</p>
+                        <p>Example resource URI:</p>
+                        <div class="code-block">
+                            http://example.org/bob
+                        </div>
+                    </div>
+                    
+                    <div id="properties" class="tab-content">
+                        <p><strong>Properties</strong> are special types of resources that describe relationships between resources or between resources and literals.</p>
+                        <p>In the formal semantics, properties are interpreted as binary relations.</p>
+                        <p>Example property URI:</p>
+                        <div class="code-block">
+                            http://example.org/knows
+                        </div>
+                    </div>
+                    
+                    <div id="literals" class="tab-content">
+                        <p><strong>Literals</strong> are values like strings, numbers, or dates that are not identified by URIs.</p>
+                        <p>Literals can be plain (with an optional language tag) or typed (with a datatype URI).</p>
+                        <p>Example literals:</p>
+                        <div class="code-block">
+                            "Bob Smith"<br>
+                            "Bob Smith"@en<br>
+                            "42"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>From Syntax to Semantics</h3>
+            <p>RDF has various serialization formats (syntax), including RDF/XML, Turtle, JSON-LD, and N-Triples. However, the formal semantics is concerned with the abstract data model, not the specific syntax.</p>
+            
+            <p>The formal semantics of RDF provides:</p>
+            <ul>
+                <li>Definitions of interpretations and models</li>
+                <li>Rules for semantic entailment</li>
+                <li>A logical framework for inference</li>
+            </ul>
+        </section>
+
+        <section id="simple-semantics">
+            <h2>Simple Semantics</h2>
+            
+            <p>Before exploring the full RDF semantics, we start with a simplified version called "simple semantics." This provides the foundation that RDF semantics builds upon.</p>
+            
+            <div class="definition">
+                <h3>Definition: Simple Interpretation</h3>
+                <p>A simple interpretation \(I\) consists of:</p>
+                <ul>
+                    <li>A non-empty set \(IR\) (the universe or domain of discourse)</li>
+                    <li>A mapping \(IEXT\) from \(IR\) to a set of pairs from \(IR\)</li>
+                    <li>A mapping \(IS\) that maps URIs to elements of \(IR\)</li>
+                    <li>A mapping \(IL\) that maps typed literals to elements of \(IR\)</li>
+                </ul>
+            </div>
+            
+            <p>In simple semantics, we interpret:</p>
+            <ul>
+                <li>URIs as resources in the universe \(IR\)</li>
+                <li>Properties as binary relations (sets of pairs from \(IR\))</li>
+                <li>Triples as assertions that a particular pair belongs to a relation</li>
+            </ul>
+            
+            <h3>Denotation in Simple Semantics</h3>
+            <p>The denotation of a term \(E\) under interpretation \(I\), written as \(I(E)\), is defined as follows:</p>
+            
+            <div class="code-block">
+                For a URI u:    I(u) = IS(u)<br>
+                For a literal l: I(l) = IL(l)
+            </div>
+            
+            <h3>Triple Satisfaction</h3>
+            <p>An interpretation \(I\) satisfies a triple \(s\ p\ o\) if:</p>
+            
+            <div class="code-block">
+                (I(s), I(o)) ∈ IEXT(I(p))
+            </div>
+            
+            <p>This means that the pair formed by the interpretations of subject and object belongs to the extension of the property.</p>
+            
+            <div class="example">
+                <h4>Example: Simple Interpretation</h4>
+                <p>Consider the triple:</p>
+                <div class="code-block">
+                    &lt;http://example.org/bob&gt; &lt;http://example.org/knows&gt; &lt;http://example.org/alice&gt; .
+                </div>
+                
+                <p>A simple interpretation \(I\) might have:</p>
+                <ul>
+                    <li>\(IR = \{person1, person2, knowsRelation\}\)</li>
+                    <li>\(IS(http://example.org/bob) = person1\)</li>
+                    <li>\(IS(http://example.org/alice) = person2\)</li>
+                    <li>\(IS(http://example.org/knows) = knowsRelation\)</li>
+                    <li>\(IEXT(knowsRelation) = \{(person1, person2)\}\)</li>
+                </ul>
+                
+                <p>This interpretation satisfies the triple because \((I(bob), I(alice)) \in IEXT(I(knows))\).</p>
+            </div>
+        </section>
+
+        <section id="rdf-interpretations">
+            <h2>RDF Interpretations</h2>
+            
+            <p>Building on simple semantics, RDF semantics adds vocabulary and constraints specific to the RDF data model. This includes special treatment for RDF-specific concepts like typed literals, blank nodes, and containers.</p>
+            
+            <div class="definition">
+                <h3>Definition: RDF Interpretation</h3>
+                <p>An RDF interpretation extends a simple interpretation by adding:</p>
+                <ul>
+                    <li>A set \(LV\) ⊆ \(IR\) of literal values</li>
+                    <li>A mapping \(IL\) from typed literals to \(LV\)</li>
+                    <li>A distinguished subset \(IP\) ⊆ \(IR\) of properties</li>
+                    <li>Interpretations for RDF vocabulary (rdf:type, rdf:Property, etc.)</li>
+                </ul>
+            </div>
+            
+            <p>Key aspects of RDF interpretations include:</p>
+            
+            <h3>Blank Nodes</h3>
+            <p>Blank nodes (bnodes) in RDF act as existentially quantified variables. They represent resources without explicitly naming them.</p>
+            
+            <p>Semantically, a blank node mapping \(A\) assigns blank nodes to elements of \(IR\). An RDF interpretation satisfies a graph containing blank nodes if there exists some blank node mapping such that the resulting triples are all satisfied.</p>
+            
+            <h3>Typed Literals</h3>
+            <p>Typed literals are interpreted according to their datatypes. RDF semantics defines how various XML Schema datatypes map to values in the universe.</p>
+            
+            <div class="code-block">
+                "42"^^&lt;http://www.w3.org/2001/XMLSchema#integer&gt; → 42 (the integer)
+            </div>
+            
+            <h3>RDF Vocabulary</h3>
+            <p>RDF semantics assigns special meaning to terms in the RDF namespace, such as:</p>
+            <ul>
+                <li>rdf:type - Indicates that a resource is an instance of a class</li>
+                <li>rdf:Property - The class of RDF properties</li>
+                <li>rdf:Statement, rdf:subject, rdf:predicate, rdf:object - For reification</li>
+            </ul>
+            
+            <div class="interactive-container">
+                <h3>RDF Graph Visualization</h3>
+                <p>Below is an interactive visualization of a simple RDF graph. Click on nodes to see details.</p>
+                
+                <div class="graph-visualization" id="graphViz">
+                    <!-- Graph will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="entailment">
+            <h2>Entailment in RDF</h2>
+            
+            <p>Entailment is a fundamental concept in logic and formal semantics. In RDF, entailment defines when one graph logically follows from another.</p>
+            
+            <div class="definition">
+                <h3>Definition: RDF Entailment</h3>
+                <p>An RDF graph \(G\) entails an RDF graph \(H\) (written as \(G \models H\)) if every RDF interpretation that satisfies \(G\) also satisfies \(H\).</p>
+            </div>
+            
+            <p>Intuitively, if \(G \models H\), then \(H\) doesn't add any new information beyond what's already implied by \(G\).</p>
+            
+            <h3>Entailment Rules</h3>
+            <p>RDF entailment can be characterized by a set of inference rules. These rules allow new triples to be derived from existing ones.</p>
+            
+            <div class="code-block">
+                Simple Entailment Rules:<br><br>
+                
+                Rule SE1 (Subgraph):<br>
+                If G' is a subgraph of G, then G entails G'<br><br>
+                
+                Rule SE2 (Instantiation):<br>
+                Replacing a blank node with a URI or literal yields an entailed graph
+            </div>
+            
+            <h3>Entailment Patterns</h3>
+            <p>Common entailment patterns in RDF include:</p>
+            
+            <div class="tab-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="subgraph">Subgraph</button>
+                    <button class="tab-btn" data-tab="blank-instantiation">Blank Node Instantiation</button>
+                    <button class="tab-btn" data-tab="interpolation">Interpolation</button>
+                </div>
+                
+                <div id="subgraph" class="tab-content active">
+                    <p>A graph entails any of its subgraphs:</p>
+                    <div class="example">
+                        <p>If G contains:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;knows&gt; &lt;alice&gt; .<br>
+                            &lt;bob&gt; &lt;age&gt; "42"^^xsd:integer .
+                        </div>
+                        
+                        <p>Then G entails:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;knows&gt; &lt;alice&gt; .
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="blank-instantiation" class="tab-content">
+                    <p>Replacing blank nodes with URIs or literals results in entailed graphs:</p>
+                    <div class="example">
+                        <p>If G contains:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;knows&gt; _:someone .
+                        </div>
+                        
+                        <p>Then G entails:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;knows&gt; &lt;alice&gt; .
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="interpolation" class="tab-content">
+                    <p>Adding blank nodes (interpolation) can produce entailed graphs:</p>
+                    <div class="example">
+                        <p>If G contains:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;hasFriend&gt; &lt;charlie&gt; .
+                        </div>
+                        
+                        <p>Then G entails:</p>
+                        <div class="code-block">
+                            &lt;bob&gt; &lt;hasFriend&gt; _:someone .<br>
+                            _:someone &lt;owl:sameAs&gt; &lt;charlie&gt; .
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Entailment Regimes</h3>
+            <p>Different semantic extensions of RDF define different entailment regimes:</p>
+            <ul>
+                <li><strong>Simple Entailment</strong>: Based on simple interpretations, without special vocabulary</li>
+                <li><strong>RDF Entailment</strong>: Adds meaning to RDF vocabulary terms</li>
+                <li><strong>RDFS Entailment</strong>: Includes class hierarchies, domain/range constraints</li>
+                <li><strong>OWL Entailment</strong>: Adds more expressive constructs from Description Logic</li>
+            </ul>
+            
+            <p>These regimes form a hierarchy, with each extending the previous one with more inferential capabilities.</p>
+        </section>
+
+        <section id="rdfs-semantics">
+            <h2>RDFS Semantics</h2>
+            
+            <p>RDF Schema (RDFS) extends RDF with a vocabulary for describing classes, subclass relationships, and property constraints. RDFS semantics formalizes these extensions.</p>
+            
+            <div class="definition">
+                <h3>Definition: RDFS Interpretation</h3>
+                <p>An RDFS interpretation extends an RDF interpretation with:</p>
+                <ul>
+                    <li>A distinguished subset \(IC\) ⊆ \(IR\) of classes</li>
+                    <li>A mapping \(ICEXT\) from \(IC\) to subsets of \(IR\) (class extensions)</li>
+                    <li>Special interpretations for RDFS vocabulary</li>
+                </ul>
+            </div>
+            
+            <h3>RDFS Vocabulary</h3>
+            <p>Key RDFS terms include:</p>
+            <ul>
+                <li><strong>rdfs:Class</strong>: The class of all classes</li>
+                <li><strong>rdfs:subClassOf</strong>: Specifies class hierarchies</li>
+                <li><strong>rdfs:subPropertyOf</strong>: Specifies property hierarchies</li>
+                <li><strong>rdfs:domain</strong>: Specifies the domain of a property</li>
+                <li><strong>rdfs:range</strong>: Specifies the range of a property</li>
+            </ul>
+            
+            <h3>RDFS Semantic Conditions</h3>
+            <p>RDFS semantics imposes conditions on interpretations, such as:</p>
+            
+            <div class="code-block">
+                Class Extension:<br>
+                x ∈ ICEXT(y) if and only if (x, y) ∈ IEXT(I(rdf:type))<br><br>
+                
+                Subclass Relationship:<br>
+                If (x, y) ∈ IEXT(I(rdfs:subClassOf)) then ICEXT(x) ⊆ ICEXT(y)<br><br>
+                
+                Domain Constraint:<br>
+                If (p, c) ∈ IEXT(I(rdfs:domain)) and (x, y) ∈ IEXT(p) then x ∈ ICEXT(c)<br><br>
+                
+                Range Constraint:<br>
+                If (p, c) ∈ IEXT(I(rdfs:range)) and (x, y) ∈ IEXT(p) then y ∈ ICEXT(c)
+            </div>
+            
+            <h3>RDFS Entailment Rules</h3>
+            <p>RDFS semantics can be characterized by entailment rules. Some key examples:</p>
+            
+            <div class="example">
+                <p><strong>Subclass Transitivity</strong>:</p>
+                <div class="code-block">
+                    If &lt;A&gt; rdfs:subClassOf &lt;B&gt; .<br>
+                    And &lt;B&gt; rdfs:subClassOf &lt;C&gt; .<br>
+                    Then &lt;A&gt; rdfs:subClassOf &lt;C&gt; .
+                </div>
+                
+                <p><strong>Domain Typing</strong>:</p>
+                <div class="code-block">
+                    If &lt;P&gt; rdfs:domain &lt;C&gt; .<br>
+                    And &lt;X&gt; &lt;P&gt; &lt;Y&gt; .<br>
+                    Then &lt;X&gt; rdf:type &lt;C&gt; .
+                </div>
+                
+                <p><strong>Range Typing</strong>:</p>
+                <div class="code-block">
+                    If &lt;P&gt; rdfs:range &lt;C&gt; .<br>
+                    And &lt;X&gt; &lt;P&gt; &lt;Y&gt; .<br>
+                    Then &lt;Y&gt; rdf:type &lt;C&gt; .
+                </div>
+            </div>
+            
+            <div class="interactive-container">
+                <h3>Explore RDFS Inference</h3>
+                <p>Try the interactive inference calculator below. Enter triples in the text area, and see what can be inferred using RDFS semantics.</p>
+                
+                <div>
+                    <textarea id="rdfsInput" rows="5" style="width: 100%; padding: 10px; margin-bottom: 10px; font-family: monospace;" placeholder="Enter RDF triples in Turtle format:
+
+ex:Person rdfs:subClassOf ex:Agent .
+ex:Student rdfs:subClassOf ex:Person .
+ex:enrolledIn rdfs:domain ex:Student .
+ex:Bob ex:enrolledIn ex:Math101 ."></textarea>
+                    
+                    <button id="inferButton" style="padding: 8px 16px; background-color: var(--secondary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">Infer New Triples</button>
+                    
+                    <div id="inferenceResults" style="margin-top: 15px; padding: 15px; background-color: #f8f9fa; border-radius: 4px; min-height: 50px;">
+                        <p>Inference results will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="advanced-topics">
+            <h2>Advanced Topics in RDF Semantics</h2>
+            
+            <p>Beyond the basics, there are several advanced topics in RDF semantics that are important for a deeper understanding.</p>
+            
+            <h3>Semantic Extensions</h3>
+            <p>RDF semantics is designed to be extensible. Various extensions have been developed:</p>
+            <ul>
+                <li><strong>D-Entailment</strong>: Extends RDF with stronger datatype semantics</li>
+                <li><strong>OWL Semantics</strong>: Builds on RDF(S) with more expressive constructs from Description Logic</li>
+                <li><strong>Rule Languages</strong>: Extensions like SWRL add rule-based inferencing</li>
+            </ul>
+            
+            <h3>Consistency and Satisfiability</h3>
+            <p>An RDF graph is satisfiable if there exists at least one interpretation that satisfies it. Some graphs may be inconsistent (unsatisfiable) under certain semantic conditions.</p>
+            
+            <p>For example, in OWL semantics, the following graph is inconsistent:</p>
+            <div class="code-block">
+                &lt;Person&gt; owl:disjointWith &lt;Organization&gt; .<br>
+                &lt;Company&gt; rdfs:subClassOf &lt;Organization&gt; .<br>
+                &lt;Bob&gt; rdf:type &lt;Person&gt; .<br>
+                &lt;Bob&gt; rdf:type &lt;Company&gt; .
+            </div>
+            
+            <h3>Complexity of Entailment</h3>
+            <p>The computational complexity of entailment checking varies across different semantic regimes:</p>
+            <ul>
+                <li><strong>Simple Entailment</strong>: NP-complete</li>
+                <li><strong>RDF Entailment</strong>: NP-complete</li>
+                <li><strong>RDFS Entailment</strong>: Polynomial time (for ground graphs)</li>
+                <li><strong>OWL 2 DL Entailment</strong>: N2EXPTIME-complete</li>
+                <li><strong>OWL 2 RL Entailment</strong>: Polynomial time</li>
+            </ul>
+            
+            <h3>The Semantic Web Vision</h3>
+            <p>The formal semantics of RDF is a cornerstone of the Semantic Web vision, where machine-readable data on the web can be processed with formal logical principles. This enables:</p>
+            <ul>
+                <li>Knowledge integration across diverse sources</li>
+                <li>Automated reasoning over distributed data</li>
+                <li>Services that can understand and process information semantically</li>
+            </ul>
+            
+            <div class="interactive-container">
+                <h3>Mathematical Foundations</h3>
+                <p>RDF semantics draws on several areas of mathematical logic:</p>
+                
+                <div class="tab-container">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="model-theory">Model Theory</button>
+                        <button class="tab-btn" data-tab="proof-theory">Proof Theory</button>
+                        <button class="tab-btn" data-tab="category-theory">Category Theory</button>
+                    </div>
+                    
+                    <div id="model-theory" class="tab-content active">
+                        <p><strong>Model Theory</strong> provides the foundation for RDF semantics by defining interpretations as mathematical structures.</p>
+                        <p>Model theory is concerned with the relationship between formal languages and the structures that give them meaning. In RDF, interpretations are models that assign meaning to terms and statements.</p>
+                        <p>Key concepts include:</p>
+                        <ul>
+                            <li>Interpretations as mappings from syntax to semantic structures</li>
+                            <li>Satisfaction of formulas under interpretations</li>
+                            <li>Logical consequence and entailment</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="proof-theory" class="tab-content">
+                        <p><strong>Proof Theory</strong> provides formal systems for inference in RDF.</p>
+                        <p>While model theory defines what follows logically, proof theory gives us concrete rules for deriving new statements. In RDF, this takes the form of entailment rules.</p>
+                        <p>Important aspects include:</p>
+                        <ul>
+                            <li>Inference rules for deriving entailed triples</li>
+                            <li>Soundness and completeness of rule systems</li>
+                            <li>Proof procedures and algorithms</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="category-theory" class="tab-content">
+                        <p><strong>Category Theory</strong> offers an alternative perspective on RDF semantics.</p>
+                        <p>More recent research has explored categorical semantics for RDF, viewing RDF graphs as categories and morphisms between them.</p>
+                        <p>This approach helps with:</p>
+                        <ul>
+                            <li>Understanding transformations between graphs</li>
+                            <li>Formalizing mappings and queries</li>
+                            <li>Connecting RDF semantics to other areas of computer science</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="scrollToTop" id="scrollTop">↑</div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>RDF Formal Semantics - A Comprehensive Guide</p>
+            <ul class="footer-links">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#simple-semantics">Simple Semantics</a></li>
+                <li><a href="#rdf-interpretations">RDF Interpretations</a></li>
+                <li><a href="#entailment">Entailment</a></li>
+                <li><a href="#rdfs-semantics">RDFS Semantics</a></li>
+            </ul>
+            <p>&copy; 2025 - Created for educational purposes</p>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            // Tab functionality
+            $('.tab-btn').click(function() {
+                const tabId = $(this).data('tab');
+                
+                $(this).closest('.tabs').find('.tab-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                $(this).closest('.tab-container').find('.tab-content').removeClass('active');
+                $('#' + tabId).addClass('active');
+            });
+            
+            // Mobile menu toggle
+            $('.mobile-menu-btn').click(function() {
+                $('.menu').toggleClass('active');
+            });
+            
+            // Scroll to top button
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    $('#scrollTop').css('opacity', '1');
+                } else {
+                    $('#scrollTop').css('opacity', '0');
+                }
+            });
+            
+            $('#scrollTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 500);
+                return false;
+            });
+            
+            // Smooth scrolling for navigation
+            $('nav a').click(function(e) {
+                if (this.hash !== '') {
+                    e.preventDefault();
+                    
+                    const hash = this.hash;
+                    
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 70
+                    }, 800);
+                    
+                    // Close mobile menu if open
+                    $('.menu').removeClass('active');
+                }
+            });
+            
+            // Theme toggle
+            $('#themeToggle').click(function() {
+                $('body').toggleClass('dark-mode');
+                
+                // Update toggle text
+                if ($('body').hasClass('dark-mode')) {
+                    $(this).text('☀️');
+                } else {
+                    $(this).text('🌓');
+                }
+            });
+            
+            // Create interactive RDF graph visualization
+            createGraph();
+            
+            // RDFS inference simulator
+            $('#inferButton').click(function() {
+                const input = $('#rdfsInput').val();
+                
+                // Simple simulation of RDFS inference (not a real implementation)
+                let results = "<h4>Inferred Triples:</h4><ul>";
+                
+                // Check for patterns in the input and simulate inferencing
+                if (input.includes("subClassOf") && input.includes("ex:Student") && input.includes("ex:Person") && 
+                    input.includes("ex:Person") && input.includes("ex:Agent")) {
+                    results += "<li>ex:Student rdfs:subClassOf ex:Agent .</li>";
+                }
+                
+                if (input.includes("rdfs:domain") && input.includes("ex:enrolledIn") && input.includes("ex:Student") &&
+                    input.includes("ex:Bob") && input.includes("ex:enrolledIn")) {
+                    results += "<li>ex:Bob rdf:type ex:Student .</li>";
+                }
+                
+                if (results.includes("ex:Bob rdf:type ex:Student") && input.includes("ex:Student rdfs:subClassOf ex:Person")) {
+                    results += "<li>ex:Bob rdf:type ex:Person .</li>";
+                }
+                
+                if (results.includes("ex:Bob rdf:type ex:Person") && input.includes("ex:Person rdfs:subClassOf ex:Agent")) {
+                    results += "<li>ex:Bob rdf:type ex:Agent .</li>";
+                }
+                
+                results += "</ul>";
+                
+                $('#inferenceResults').html(results);
+            });
+        });
+        
+        // Create RDF graph visualization
+        function createGraph() {
+            const graphContainer = document.getElementById('graphViz');
+            
+            // Create nodes
+            const nodes = [
+                { id: 'bob', label: 'Bob', x: 75, y: 150, color: '#e74c3c' },
+                { id: 'alice', label: 'Alice', x: 325, y: 150, color: '#3498db' },
+                { id: 'person', label: 'Person', x: 150, y: 50, color: '#2ecc71' },
+                { id: 'agent', label: 'Agent', x: 250, y: 50, color: '#9b59b6' }
+            ];
+            
+            // Create edges
+            const edges = [
+                { from: 'bob', to: 'alice', label: 'knows' },
+                { from: 'bob', to: 'person', label: 'type' },
+                { from: 'alice', to: 'person', label: 'type' },
+                { from: 'person', to: 'agent', label: 'subClassOf' }
+            ];
+            
+            // Add nodes to the container
+            nodes.forEach(node => {
+                const nodeEl = document.createElement('div');
+                nodeEl.className = 'node';
+                nodeEl.style.left = `${node.x}px`;
+                nodeEl.style.top = `${node.y}px`;
+                nodeEl.style.backgroundColor = node.color;
+                nodeEl.innerHTML = node.label;
+                nodeEl.setAttribute('data-id', node.id);
+                
+                // Node click event for details
+                nodeEl.addEventListener('click', function() {
+                    alert(`Node: ${node.label}\nType: Resource`);
+                });
+                
+                graphContainer.appendChild(nodeEl);
+            });
+            
+            // Add edges to the container
+            edges.forEach(edge => {
+                const fromNode = nodes.find(n => n.id === edge.from);
+                const toNode = nodes.find(n => n.id === edge.to);
+                
+                const edgeEl = document.createElement('div');
+                edgeEl.className = 'edge';
+                
+                // Calculate edge position and rotation
+                const deltaX = toNode.x - fromNode.x;
+                const deltaY = toNode.y - fromNode.y;
+                const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+                
+                edgeEl.style.width = `${length}px`;
+                edgeEl.style.left = `${fromNode.x + 25}px`;
+                edgeEl.style.top = `${fromNode.y + 25}px`;
+                edgeEl.style.transform = `rotate(${angle}deg)`;
+                
+                graphContainer.appendChild(edgeEl);
+                
+                // Add edge label
+                const labelEl = document.createElement('div');
+                labelEl.className = 'edge-label';
+                labelEl.innerHTML = edge.label;
+                labelEl.style.left = `${fromNode.x + deltaX/2 + 10}px`;
+                labelEl.style.top = `${fromNode.y + deltaY/2 - 10}px`;
+                
+                graphContainer.appendChild(labelEl);
+            });
+        }
+        
+        // Initialize MathJax
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+</body>
+</html>
